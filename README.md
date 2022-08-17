@@ -28,4 +28,29 @@ The output should be similar to this:
 
 To install Tomcat, you’ll need the latest Core Linux build for Tomcat 10, which you can get from the [downloads page](https://tomcat.apache.org/download-10.cgi). Select the latest Core Linux build, ending in .tar.gz. At the time of writing, the latest version was 10.0.20.
 
-First, navigate to the /tmp directory:
+First, navigate to the `/tmp` directory:
+```sh
+cd /tmp
+```
+Download the archive using **wget** by running the following command:
+```sh
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz
+```
+The **wget** command downloads resources from the Internet.
+Then, extract the archive you downloaded by running:
+```sh
+sudo tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat --strip-components=1
+```
+Since you have already created a user, you can now grant **tomcat** ownership over the extracted installation by running:
+```sh
+sudo chown -R tomcat:tomcat /opt/tomcat/
+```
+```sh
+sudo chmod -R u+x /opt/tomcat/bin
+```
+Both commands update the settings of your tomcat installation. In this step, you installed the JDK and Tomcat. You also created a separate user for it and set up permissions over Tomcat binaries. You will now configure credentials for accessing your Tomcat instance.
+
+## Step 2 — Configuring Admin Users
+To gain access to the **Manager** and **Host Manager pages**, you’ll define privileged users in Tomcat’s configuration. You will need to remove the IP address restrictions, which disallows all external IP addresses from accessing those pages.
+
+Tomcat users are defined in `/opt/tomcat/conf/tomcat-users.xml`. Open the file for editing with the following command:
