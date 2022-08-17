@@ -1,4 +1,4 @@
-# Install Apache Tomcat and Deploy a Java Web Application on Ubuntu 20.04
+# Install Apache Tomcat and then Deploy a Java Web Application on Ubuntu 20.04
 ## 1. Install Java
 Update system packages
  ```sh
@@ -38,3 +38,8 @@ Change access permissions for the installation directory.
 ```sh
 sudo chmod -R 755 /opt/tomcat/
 ```
+Edit conf/tomcat-users.xml file to configure an administrator and manager account for Apache Tomcat.
+```sh
+sudo nano /opt/tomcat/conf/tomcat-users.xml
+```
+Add the code below within the <tomcat-users> tag. Change the password for administrator and manager access by changing the value StrongPassword below with a high secure password.
