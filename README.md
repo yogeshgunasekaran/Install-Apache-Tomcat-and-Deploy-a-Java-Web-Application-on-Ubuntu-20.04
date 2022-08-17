@@ -13,6 +13,19 @@ sudo apt update
 ```
 Then, install the JDK by running the following command:
 ```sh
-sudo apt install default-jdk
+sudo apt install default-jdk -y
 ```
+Check the version of the available Java installation:
+```sh 
+java -version
+```
+The output should be similar to this:
+> Output <br>
+> openjdk version "11.0.14" 2022-01-18 <br>
+> OpenJDK Runtime Environment (build 11.0.14+9-Ubuntu-0ubuntu2.20.04) <br>
+> OpenJDK 64-Bit Server VM (build 11.0.14+9-Ubuntu-0ubuntu2.20.04, mixed mode, sharing) <br>
+> 
 
+To install Tomcat, you’ll need the latest Core Linux build for Tomcat 10, which you can get from the [downloads page](https://tomcat.apache.org/download-10.cgi). Select the latest Core Linux build, ending in .tar.gz. At the time of writing, the latest version was 10.0.20.
+
+First, navigate to the /tmp directory:
