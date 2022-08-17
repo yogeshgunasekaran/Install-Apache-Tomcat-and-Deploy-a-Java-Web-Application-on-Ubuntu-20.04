@@ -1,45 +1,18 @@
-# Install Apache Tomcat and then Deploy a Java Web Application on Ubuntu 20.04
-## 1. Install Java
-Update system packages
- ```sh
- sudo apt update
- ```
- Install Java runtime environment
- ```sh
- sudo apt install default-jdk -y
- ```
- Verify Java installation
- ```sh
- java -version
- ```
- ## 2. Install Tomcat
-Download the latest version of Apache Tomcat. To find the latest Tomcat version, visit the official download page
+# Install Apache Tomcat 10 and then Deploy a Java Web Application on Ubuntu 20.04
+Apache Tomcat is a web server and servlet container that is used to serve Java applications. It’s an open source implementation of the Jakarta Servlet, Jakarta Server Pages, and other technologies of the Jakarta EE platform.
+## Step 1 — Installing Tomcat
+For security purposes, Tomcat should run under a separate, unprivileged user. Run the following command to create a user called tomcat:
 ```sh
-wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.0.8/bin/apache-tomcat-10.0.8.tar.gz
+sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 ```
-Extract the downloaded archive
+<ins> *Note*</ins>  : By supplying /bin/false as the user’s default shell, you ensure that it’s not possible to log in as tomcat
+
+You’ll now install the JDK. First, update the package manager cache by running:
 ```sh
-sudo tar xzvf apache-tomcat-10.0.8.tar.gz
+sudo apt update
 ```
-Create an installation directory **/opt/tomcat/**
+Then, install the JDK by running the following command:
 ```sh
-sudo mkdir /opt/tomcat/
+sudo apt install default-jdk
 ```
 
-Move the extracted files to the installation directory.
-```sh
-sudo mv apache-tomcat-10.0.8/* /opt/tomcat/
-```
-Change ownership of the installation directory.
-```sh
-sudo chown -R www-data:www-data /opt/tomcat/
-```
-Change access permissions for the installation directory.
-```sh
-sudo chmod -R 755 /opt/tomcat/
-```
-Edit conf/tomcat-users.xml file to configure an administrator and manager account for Apache Tomcat.
-```sh
-sudo nano /opt/tomcat/conf/tomcat-users.xml
-```
-Add the code below within the <tomcat-users> tag. Change the password for administrator and manager access by changing the value StrongPassword below with a high secure password.
