@@ -54,3 +54,14 @@ Both commands update the settings of your tomcat installation. In this step, you
 To gain access to the **Manager** and **Host Manager pages**, you’ll define privileged users in Tomcat’s configuration. You will need to remove the IP address restrictions, which disallows all external IP addresses from accessing those pages.
 
 Tomcat users are defined in `/opt/tomcat/conf/tomcat-users.xml`. Open the file for editing with the following command:
+```sh
+sudo vim /opt/tomcat/conf/tomcat-users.xml
+```
+Add the following lines before the ending tag in `/opt/tomcat/conf/tomcat-users.xml`:
+```sh
+<role rolename="manager-gui" />
+<user username="manager" password="manager_password" roles="manager-gui" />
+
+<role rolename="admin-gui" />
+<user username="admin" password="admin_password" roles="manager-gui,admin-gui" />
+```
